@@ -35,12 +35,12 @@ Steps to integrate in .NET 6 application -
 10. To authenticate we will use managed identities which will read 3 environment variables (`AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET`, and `AZURE_TENANT_ID`) to ascertain our identity.
 11. `AZURE_CLIENT_ID` corresponds to `appId`, `AZURE_CLIENT_SECRET` corresponds to `password`, and `AZURE_TENANT_ID` corresponds to `tenant` from step 6, copy this in to the `launchSettings.json` file as we will be reading them as environment variables for the current process.
     ```javascript
-        "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Development",
-            "AZURE_CLIENT_ID": "<VALUE>",
-            "AZURE_CLIENT_SECRET": "<VALUE>",
-            "AZURE_TENANT_ID": "<VALUE>"
-        },
+    "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "AZURE_CLIENT_ID": "<VALUE>",
+        "AZURE_CLIENT_SECRET": "<VALUE>",
+        "AZURE_TENANT_ID": "<VALUE>"
+    }
     ```
 12. Install the following nuget packages for Azure SDK -
     - `Azure.Extensions.AspNetCore.Configuration.Secrets` (For `.AddAzureKeyVault` extension method for using Azure key vault as partial configuation)

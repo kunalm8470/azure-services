@@ -13,9 +13,9 @@
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "AZURE_CLIENT_SECRET": "TVk3k3.r~.posz2~hrmAeSxJ._MgPRDrw.",
-        "AZURE_CLIENT_ID": "666f0332-f3ea-498c-a709-8841cd34ea32",
-        "AZURE_TENANT_ID": "9f91c670-ec62-42e9-946b-2898f6b34c7d"
+        "AZURE_CLIENT_ID": "<VALUE>",
+        "AZURE_CLIENT_SECRET": "<VALUE>",
+        "AZURE_TENANT_ID": "<VALUE>"
       },
       "applicationUrl": "https://localhost:7246",
       "dotnetRunMessages": true
