@@ -42,8 +42,8 @@ Steps to integrate in .NET 6 application -
         "AZURE_TENANT_ID": "<VALUE>"
     }
     ```
-12. Install the following nuget packages for Azure SDK -
-    - `Azure.Extensions.AspNetCore.Configuration.Secrets` (For `.AddAzureKeyVault` extension method for using Azure key vault as partial configuation)
-    - Azure.Identity (For `DefaultAzureCredential`)
-    - Azure.Security.KeyVault.Secrets (For creating key vault client)
+12. Install the following nugets for Azure SDK -
+    - [`Azure.Extensions.AspNetCore.Configuration.Secrets`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.Configuration.Secrets) (For `.AddAzureKeyVault` extension method for using Azure key vault as partial configuation)
+    - [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity/) (For `DefaultAzureCredential`)
+    - [`Azure.Security.KeyVault.Secrets`](https://www.nuget.org/packages/Azure.Security.KeyVault.Secrets/) (For creating key vault client)
 13. Inject `IConfiguration` into the controllers' constructor and fetch the value as any other configuration.
