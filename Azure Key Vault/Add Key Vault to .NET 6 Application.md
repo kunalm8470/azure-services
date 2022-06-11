@@ -39,7 +39,7 @@
 9. Link the Service principal generated in step 6 to Azure key vault 
 `Settings > Access Policy > Add access policy`
 search using the Service principal Guid
-Select the secret permissions to **Get** and **List** following the [Priciple of Least Privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) and save it.
+Select the secret permissions to **Get** and **List** following the [Principle of Least Privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) and save it.
 
 10. Generate a secret in this format in the Generate Secret page -`parentkey--childkey1--childkey2`
 
