@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "d44b662c-e0f7-4d46-8b3d-bfd372013a8b",
+		"name": "Azure Functions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "HttpTriggerInProcess",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-functions-key",
+						"value": "CUARjnbIEENNwWfF7vbv3qnNm0xGLx7vSgspimrAxj5byX6/ol43QA==",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://httptrigger-azurektdemo001.azurewebsites.net/api/Users/1",
+					"protocol": "https",
+					"host": [
+						"httptrigger-azurektdemo001",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"Users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HttpTriggerIsolatedProcess",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-functions-key",
+						"value": "RKOjnJ/aYCatStLGW99J5bNZkKxvFw5xpfAgDWcCiFRaDjnuoGtAGQ==",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://httptrigger-isolatedmode-azurektdemo001.azurewebsites.net/api/Users/1",
+					"protocol": "https",
+					"host": [
+						"httptrigger-isolatedmode-azurektdemo001",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"Users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ServiceBusTrigger",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Fake title\",\r\n    \"description\": \"Fake description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5048/api/Todo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5048",
+					"path": [
+						"api",
+						"Todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request Reply Pattern - Producer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Fake title6\",\r\n    \"description\": \"Fake description6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5108/api/Todo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5108",
+					"path": [
+						"api",
+						"Todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Claim Check Pattern - Producer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "employees",
+							"type": "file",
+							"src": "/C:/Users/kmukherjee/OneDrive - Allegion/Desktop/employees.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5134/api/Employees/Process",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5134",
+					"path": [
+						"api",
+						"Employees",
+						"Process"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Durable Functions Example",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7071/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7071",
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

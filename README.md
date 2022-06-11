@@ -1,49 +1,57 @@
-# Azure Services
+# **Azure Services**
 
-## Table of Contents
-- [Azure Key Vault](#azure-key-vault)
+- **Azure Blob Storage**
+    - [Containers](./Azure%20Blob%20Storage/Containers/)
+    - [Storage Queues](./Azure%20Blob%20Storage/Storage%20Queues/)
+    - [Table Storage](./Azure%20Blob%20Storage/Table%20Storage/)
 
-## Azure Key Vault
+- **Azure App Configuration**
+    - [Using Azure App Configuration with .NET 6 API](./Azure%20App%20Configuration/AspNet6AzureAppConfiguration/)
+    - [Using Azure App Configuration with .NET Framework 4.8 API](./Azure%20App%20Configuration/AspNetFrameworkAzureAppConfiguration/)
+    - [Feature Management](./Azure%20App%20Configuration/FeatureManagementAzureAppConfiguration/)
 
-Key vault is a fully managed service in Azure to store secrets and keys using strong cryptographic algorithms or optional hardware based keys.
+- **Azure Key Vault**
+    - [Overview](./Azure%20Key%20Vault/Azure%20Key%20Vault.md)
+    - [Steps to integrate with .NET 6 API](./Azure%20Key%20Vault/Add%20Key%20Vault%20to%20.NET%206%20Application.md)
+    - [Using Azure Key Vault with .NET 6 API](./Azure%20Key%20Vault/key-vault/)
 
-Steps to integrate in .NET 6 application -
-1. Create a resource group.
-2. Create a Key Vault app in the Azure portal.
-3. Install [`az-cli`](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
-4. Login first time using the az cli by typing 
-    ```
-    az login
-    ```
-5. Add Service principal for using az cli - 
-    ```
-    az ad sp create-for-rbac --name "<YOUR_SERVICE_PRINCIPAL_NAME>"
-    ```
-6. The `az-cli` will return a JSON object on executing the above command which looks like (Store this for later use) -
-    ```javascript
-    {
-        "appId": "<uuidv4>",
-        "displayName": "<YOUR_SERVICE_PRINCIPAL_NAME>",
-        "name": "<uuidv4>",
-        "password": "<random_string>",
-        "tenant": "<uuidv4>"
-    }
-    ```
-7. Head over to **Access Policies** tab in the Key vault app in Azure portal and select the Service Principal name in the dropdown and add `GET` and `LIST` permissions.
-8. Navigate to **Secrets** tab and add any application secrets.
-9. Copy the Vault URI in the Key vault app and add it into the `appsettings.json` file.
-10. To authenticate we will use managed identities which will read 3 environment variables (`AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET`, and `AZURE_TENANT_ID`) to ascertain our identity.
-11. `AZURE_CLIENT_ID` corresponds to `appId`, `AZURE_CLIENT_SECRET` corresponds to `password`, and `AZURE_TENANT_ID` corresponds to `tenant` from step 6, copy this in to the `launchSettings.json` file as we will be reading them as environment variables for the current process.
-    ```javascript
-    "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "AZURE_CLIENT_ID": "<VALUE>",
-        "AZURE_CLIENT_SECRET": "<VALUE>",
-        "AZURE_TENANT_ID": "<VALUE>"
-    }
-    ```
-12. Install the following nugets for Azure SDK -
-    - [`Azure.Extensions.AspNetCore.Configuration.Secrets`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.Configuration.Secrets) (For `.AddAzureKeyVault` extension method for using Azure key vault as partial configuation)
-    - [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity/) (For `DefaultAzureCredential`)
-    - [`Azure.Security.KeyVault.Secrets`](https://www.nuget.org/packages/Azure.Security.KeyVault.Secrets/) (For creating key vault client)
-13. Inject `IConfiguration` into the controllers' constructor and fetch the value as any other configuration.
+- **Azure SQL Server**
+    - [Using Azure SQL Server with .NET 6 API](./Azure%20SQL%20Server/TodoAPI/)
+
+- **Azure Cosmos DB**
+    - [Using Azure CosmosDB MongoDB API with .NET 6 API](./Azure%20Cosmos%20DB/MongoDB%20API/TodoAPIMongo/)
+
+- **Azure Cache for Redis**
+    - [Using Azure Cache for Redis with .NET 6 API](./Azure%20Cache%20for%20Redis/TodoAPIRedis/)
+
+- **Azure App Service Web Jobs**
+    - [.NET 6 Hosted Services](./Background%20Tasks%20and%20Azure%20App%20Service%20Web%20Jobs/HostedServiceExample/)
+    - [.NET 6 BackgroundServices](./Background%20Tasks%20and%20Azure%20App%20Service%20Web%20Jobs/WorkerServiceDemo/)
+
+- **Azure Service Bus**
+    - [Producer-Consumer app using Azure Service Bus Queues](./Azure%20Service%20Bus/ASB_Queue/)
+    - [Producer-Consumer app using Azure Service Bus Topics](./Azure%20Service%20Bus/ASB_Topic/)
+    - [Azure Service Bus Batching Messages](./Azure%20Service%20Bus/ASB_AdvancedFeatures/Batching/)
+    - [Azure Service Bus Deferral of messages at Producer](./Azure%20Service%20Bus/ASB_AdvancedFeatures/PublisherDeferredMessages/)
+    - [Azure Service Bus Sessions](./Azure%20Service%20Bus/ASB_AdvancedFeatures/Sessions/)
+
+- **Azure Functions**
+    - [Azure Functions with HTTP Trigger (In-Process)](./Azure%20Functions/HttpTriggerDemo/)
+    - [Azure Functions with HTTP Trigger (Isolated-Process)](./Azure%20Functions/HttpTriggeredIsolatedProcessDemo/)
+    - [Azure Functions with Timer Trigger](./Azure%20Functions/TimerTriggerDemo/)
+    - [Azure Functions with Service Bus Trigger](./Azure%20Functions/ServiceBusTriggerDemo/)
+    - [Request-Reply pattern with Azure Functions](./Azure%20Functions/RequestReplyPattern/)
+    - [Claim Check pattern with Azure Functions](./Azure%20Functions/ClaimCheckPattern/)
+    - [Durable Functions](./Azure%20Functions/DurableFunctionsDemo/)
+
+- **Logging in Azure**
+    - [Serilog Console Sink Demo](./Logging%20in%20Azure/SerilogConsoleSinkDemo/)
+    - [Serilog Azure Blob Storage Container Sink Demo](./Logging%20in%20Azure/SerilogAzureBlobStorageDemo/)
+    - [Serilog Azure Table Storage Sink Demo](./Logging%20in%20Azure/SerilogAzureTableStorageDemo/)
+    - [Using Azure Application Insights in .NET 6 API](./Logging%20in%20Azure/AzureApplicationInsightsAspNet6Demo/)
+
+- **Azure Virtual Machines**
+    - [Overview](./Azure%20Virtual%20Machines/)
+    
+- **Azure DevOps**
+    - [Overview](./Azure%20DevOps/)

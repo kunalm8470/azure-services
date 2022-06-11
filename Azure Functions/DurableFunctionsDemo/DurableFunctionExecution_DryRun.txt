@@ -1,0 +1,19 @@
+Starter function execute - instanceId
+Starter function HTTP 202
+Orchestrator function runs 1st time
+Activity fn 1 scheduled
+Orchestrator function goes to sleep
+Activity fn 1 completed
+Activity fn 1 signals Orchestrator to wake up
+
+Orchestrator fn wakes up
+Whether Activity fn 1 scheduled or not ??
+	If yes Whether Activity fn 1 completed or not ??
+	
+	
+Activity fn 2 scheduled
+Orchestrator function goes to sleep
+Activity fn 2 completed
+Activity fn 2 signals Orchestrator to wake up
+
+Orchestrator fn will set the runtimeStatus key as completed

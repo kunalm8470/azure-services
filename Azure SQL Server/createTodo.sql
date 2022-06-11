@@ -1,0 +1,6 @@
+CREATE TABLE Todo (
+    [Id] INT PRIMARY KEY IDENTITY(1,1),
+    [Title] NVARCHAR(200) NOT NULL,
+    [Description] NVARCHAR(1000) NOT NULL,
+    [Completed] BIT DEFAULT 0
+);

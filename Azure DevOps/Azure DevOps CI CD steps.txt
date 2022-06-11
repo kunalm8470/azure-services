@@ -1,0 +1,11 @@
+1) Created the local .net 6 API
+2) Created the app svc
+3) Create Organization in the azure devops
+4) Create Project in azure devops
+5) Create Repo
+6) Configured the SSH public key by clicking gear icon
+7) Pushed our local code into our repo
+8) Create new build pipeline (CI) - Continous Integration
+9) Create new release pipeline (CD) - Continous Deployment
+
+10) Manually trigger the build pipeline

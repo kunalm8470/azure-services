@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "b981624f-baaf-4d19-9a39-47e12d23f81d",
+		"name": "Azure Service Bus Topic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Withdraw Funds",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_id\": 1,\r\n    \"name\": \"KM\",\r\n    \"amount\": 500.01\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5035/api/BankAccounts/Withdraw",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5035",
+					"path": [
+						"api",
+						"BankAccounts",
+						"Withdraw"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

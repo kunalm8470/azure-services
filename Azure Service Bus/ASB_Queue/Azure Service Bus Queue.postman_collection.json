@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "0ce656bf-8c8a-4525-bd03-e2fa942ca52f",
+		"name": "Azure Service Bus Queue",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add todo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Fake title3\",\r\n    \"description\": \"Fake description3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5186/api/Todo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5186",
+					"path": [
+						"api",
+						"Todo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

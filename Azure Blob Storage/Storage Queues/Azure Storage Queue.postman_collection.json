@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "c690b42e-b78c-4409-8ee0-f4b64de5a532",
+		"name": "Azure Storage Queue",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Todo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Fake title2\",\r\n    \"description\": \"Fake description2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5160/api/Todo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5160",
+					"path": [
+						"api",
+						"Todo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
