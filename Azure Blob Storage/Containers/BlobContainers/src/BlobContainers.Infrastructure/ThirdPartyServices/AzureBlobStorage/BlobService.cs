@@ -2,6 +2,7 @@
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Azure.Storage.Sas;
+using BlobContainers.Domain.Exceptions;
 using BlobContainers.Domain.Extensions;
 using BlobContainers.Domain.Interfaces.Services;
 
@@ -20,7 +21,14 @@ public class BlobService : IBlobService
     {
         BlobContainerClient containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
 
-        await containerClient.DeleteBlobIfExistsAsync(blobName, cancellationToken: token);
+        BlobClient blobClient = containerClient.GetBlobClient(blobName);
+
+        if (!await blobClient.ExistsAsync(cancellationToken: token))
+        {
+            throw new BlobNotFoundException("Blob doesn't exist!");
+        }
+
+        await blobClient.DeleteAsync(cancellationToken: token);
     }
 
     public Uri GenerateSASUrlAsync(string accountName, string accountKey, string containerName, string blobName, int expiresInMinutes = 20)
@@ -59,7 +67,7 @@ public class BlobService : IBlobService
 
         if (!await blobClient.ExistsAsync(cancellationToken: token))
         {
-            return default;
+            throw new BlobNotFoundException("Blob doesn't exist!");
         }
 
         return await blobClient.DownloadContentAsync(cancellationToken: token);

@@ -4,6 +4,7 @@ using BlobContainers.Application.Blobs.v1.Commands.DeleteBlob;
 using BlobContainers.Application.Blobs.v1.Commands.GenerateSASUrl;
 using BlobContainers.Application.Blobs.v1.Queries.GetBlobByName;
 using BlobContainers.Application.Blobs.v1.Queries.ListBlobs;
+using BlobContainers.Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,17 +34,22 @@ namespace BlobContainers.API.Controllers.v1
         {
             BlobDownloadResult downloadResult = await _mediator.Send(query, cancellationToken);
 
-            if (downloadResult is null)
-            {
-                return NotFound();
-            }
-
             return File(downloadResult.Content.ToArray(), downloadResult.Details.ContentType);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateBlob([FromForm(Name = "inputFile")] IFormFile file, CancellationToken cancellationToken)
         {
+            if (file is null)
+            {
+                throw new InvalidRequestException("Invalid file name");
+            }
+
+            if (string.IsNullOrEmpty(file.FileName))
+            {
+                throw new InvalidRequestException("File name cannot be null/empty.");
+            }
+            
             await _mediator.Send(new CreateBlobCommand { File = file }, cancellationToken);
 
             return StatusCode(StatusCodes.Status201Created);

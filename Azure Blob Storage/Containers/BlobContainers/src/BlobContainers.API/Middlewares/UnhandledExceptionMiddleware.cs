@@ -36,21 +36,13 @@ public class UnhandledExceptionMiddleware
 
     private async Task HandleUnhandledExceptionAsync(HttpContext context, Exception ex)
     {
+        string genericErrorMessage = "Something went wrong. Please try after some time";
+
         string traceId = Guid.NewGuid().ToString();
 
         _logger.LogError("Unhandled exception occured on - {currentDateTime}\r\nTraceId: {traceId}, {exceptionMessage}", DateTime.UtcNow, traceId, ex.ToString());
 
-        int statusCode = (int)HttpStatusCode.InternalServerError;
-
-        string message = ex.Message;
-
-        switch (ex)
-        {
-            case InvalidRequestException:
-                message = string.Join(Environment.NewLine, (ex as InvalidRequestException)?.Errors);
-                statusCode = (int)HttpStatusCode.BadRequest;
-                break;
-        }
+        (int statusCode, string message) = HandleExceptionsSubType(ex);
 
         ProblemDetails details = new()
         {
@@ -58,10 +50,10 @@ public class UnhandledExceptionMiddleware
             Type = $"https://httpstatuses.com/{statusCode}",
             Title = (_env.EnvironmentName == "Development")
                     ? message
-                    : "Something went wrong. Please try after some time",
+                    : genericErrorMessage,
             Detail = (_env.EnvironmentName == "Development")
                      ? ex.ToString()
-                     : "Something went wrong. Please try after some time",
+                     : genericErrorMessage,
             Instance = traceId
         };
 
@@ -70,5 +62,38 @@ public class UnhandledExceptionMiddleware
         context.Response.StatusCode = statusCode;
 
         await context.Response.WriteAsync(JsonSerializer.Serialize(details));
+    }
+
+    private static (int statusCode, string message) HandleExceptionsSubType(Exception ex)
+    {
+        int statusCode = (int)HttpStatusCode.InternalServerError;
+
+        string message = ex.Message;
+
+        switch (ex)
+        {
+            case InvalidRequestException:
+                InvalidRequestException requestException = (ex as InvalidRequestException);
+
+                if (requestException?.Errors is null && !string.IsNullOrEmpty(requestException?.Message))
+                {
+                    message = requestException?.Message;
+                }
+                else if (requestException?.Errors is not null)
+                {
+                    message = string.Join(Environment.NewLine, requestException.Errors);
+                }
+
+                statusCode = (int)HttpStatusCode.BadRequest;
+                break;
+
+            case BlobNotFoundException:
+                BlobNotFoundException blobNotFoundException = (ex as BlobNotFoundException);
+                statusCode = (int)HttpStatusCode.NotFound;
+                message = blobNotFoundException.Message;
+                break;
+        }
+
+        return (statusCode, message);
     }
 }
