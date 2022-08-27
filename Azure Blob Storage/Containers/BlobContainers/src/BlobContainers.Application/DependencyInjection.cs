@@ -35,12 +35,6 @@ public static class DependencyInjection
         // Register MediatR
         services.AddMediatR(typeof(CreateBlobCommand));
 
-        //services.AddTransient<IRequestHandler<CreateBlobCommand, Unit>, CreateBlobCommandHandler>();
-        //services.AddTransient<IRequestHandler<DeleteBlobCommand, Unit>, DeleteBlobCommandHandler>();
-        //services.AddTransient<IRequestHandler<GenerateSASUrlCommand, SASUrlDto>, GenerateSASUrlCommandHandler>();
-        //services.AddTransient<IRequestHandler<ListBlobsQuery, IEnumerable<string>>, ListBlobsQueryHandler>();
-        //services.AddTransient<IRequestHandler<GetBlobByNameQuery, BlobDownloadResult>, GetBlobByNameQueryHandler>();
-
         return services;
     }
 }
