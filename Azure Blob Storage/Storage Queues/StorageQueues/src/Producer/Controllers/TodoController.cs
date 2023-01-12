@@ -30,6 +30,7 @@ namespace Producer.Controllers
             };
 
             Response<SendReceipt> sendReciept = await _storageQueueService.PublishMessageAsync(todo, cancellationToken: cancellationToken);
+
             return Accepted(sendReciept);
         }
     }

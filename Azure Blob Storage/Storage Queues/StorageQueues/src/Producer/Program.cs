@@ -33,13 +33,14 @@ if (builder.Environment.IsDevelopment())
         o.AddPolicy("CorsPolicy",
             builder => builder.AllowAnyOrigin()
             .AllowAnyMethod()
-            .AllowAnyHeader());
+            .AllowAnyHeader()
+        );
     });
 }
 
 builder.Services.AddControllers();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 

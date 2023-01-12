@@ -31,7 +31,8 @@ namespace Consumer
 
         private async Task ProcessStorageQueueMessageAsync(CancellationToken stoppingToken)
         {
-            Response<QueueMessage> queueMessage = await _queueService.ReceiveMessageAsync(cancellationToken: stoppingToken).ConfigureAwait(false);
+            Response<QueueMessage> queueMessage = await _queueService.ReceiveMessageAsync(cancellationToken: stoppingToken)
+                .ConfigureAwait(false);
 
             if (queueMessage.Value == default)
             {
@@ -52,18 +53,28 @@ namespace Consumer
                 _logger.LogError(ex, "Error deserializing message", queueMessage.Value);
 
                 // Publishing message to poison queue
-                await _queueService.DeadLetterMessageAsync(queueMessage.Value.Body).ConfigureAwait(false);
+                await _queueService.DeadLetterMessageAsync(
+                    message: queueMessage.Value.Body,
+                    cancellationToken: stoppingToken
+                ).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error processing message", queueMessage.Value);
 
                 // Publishing message to poison queue
-                await _queueService.DeadLetterMessageAsync(queueMessage.Value.Body).ConfigureAwait(false);
+                await _queueService.DeadLetterMessageAsync(
+                    message: queueMessage.Value.Body, 
+                    cancellationToken: stoppingToken
+                ).ConfigureAwait(false);
             }
             finally
             {
-                await _queueService.DeleteMessageAsync(messageId, popReceipt, stoppingToken).ConfigureAwait(false);
+                await _queueService.DeleteMessageAsync(
+                    messageId, 
+                    popReceipt, 
+                    cancellationToken: stoppingToken
+                ).ConfigureAwait(false);
             }
         }
     }
